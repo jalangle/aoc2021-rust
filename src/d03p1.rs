@@ -1,5 +1,3 @@
-use std::path::Path;
-
 #[path = "util.rs"]
 mod util;
 
@@ -37,10 +35,7 @@ fn get_epsilon(count_of_lines: usize, count_of_ones: &Vec<u32>) -> u32
 }
 
 pub fn begin(args: Vec<String>) {
-    
-    let path = Path::new(&args[1]);
-    
-    let lines  = util::file_to_lines(path);
+    let lines  = util::file_to_lines(&args[1]);
 
     let initial : Vec<u32> = vec![0; lines[0].len()];
     let count_of_ones : Vec<u32> = lines.iter().map(|line| {

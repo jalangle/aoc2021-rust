@@ -7,8 +7,6 @@ H*D: 1660158
 
 #![allow(dead_code)]
 
-use std::path::Path;
-
 #[path = "util.rs"]
 mod util;
 
@@ -33,9 +31,7 @@ impl Instruction {
 }
 
 pub fn begin(args: Vec<String>) {
-    
-    let path = Path::new(&args[1]);
-    let lines = util::file_to_lines(path);
+    let lines = util::file_to_lines(&args[1]);
 
     let instructions : Vec<Instruction> = lines.iter().map(|x| Instruction::new(x.to_string()) ).collect();
 

@@ -4,7 +4,8 @@ use std::fs::File;
 use std::io::Read;
 use std::path::Path;
 
-pub fn file_to_lines(path: &Path) -> Vec<String> {
+pub fn file_to_lines(path: &String) -> Vec<String> {
+    let path = Path::new(path);
 
     let mut file = match File::open(&path) {
         Err(why) => panic!("couldn't open {}: {}", path.display(), why),

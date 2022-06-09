@@ -1,5 +1,3 @@
-use std::path::Path;
-
 #[path = "util.rs"]
 mod util;
 
@@ -66,9 +64,7 @@ fn get_co2rating(values: Vec<Vec<u32>>) -> u32 {
 
 pub fn begin(args: Vec<String>) {
     
-    let path = Path::new(&args[1]);
-    
-    let lines  = util::file_to_lines(path);
+    let lines  = util::file_to_lines(&args[1]);
 
     let values : Vec<Vec<u32>> = lines.iter().map(|line| {
         line.chars().map(|char| { char.to_digit(10).unwrap() }).collect::<Vec<u32>>()
