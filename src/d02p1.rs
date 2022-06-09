@@ -9,9 +9,10 @@ H*D: 1660158
 #![allow(unused_mut)]
 #![allow(unused_variables)]
 
-use std::fs::File;
-use std::io::Read;
 use std::path::Path;
+
+#[path = "util.rs"]
+mod util;
 
 struct Instruction {
     pub command: String,
@@ -33,27 +34,10 @@ impl Instruction {
     }
 }
 
-fn file_to_lines(path: &Path) -> Vec<String> {
-
-    let mut file = match File::open(&path) {
-        Err(why) => panic!("couldn't open {}: {}", path.display(), why),
-        Ok(file) => file,
-    };
-
-    let mut s = String::new();
-    match file.read_to_string(&mut s) {
-        Err(why) => panic!("couldn't read {}: {}", path.display(), why),
-        Ok(_) => {}
-    };
-
-    let lines : Vec<String> = s.split("\n").collect::<Vec<&str>>().iter().map(|x| x.to_string()).collect::<Vec<String>>();
-    lines
-}
-
 pub fn begin(args: Vec<String>) {
     
     let path = Path::new(&args[1]);
-    let lines = file_to_lines(path);
+    let lines = util::file_to_lines(path);
 
     let instructions : Vec<Instruction> = lines.iter().map(|x| Instruction::new(x.to_string()) ).collect();
 
