@@ -3,6 +3,7 @@ mod d01p2;
 mod d02p1;
 mod d02p2;
 mod d03p1;
+mod d03p2;
 
 fn main() {
     let module = std::env::args().nth(1);
@@ -23,6 +24,9 @@ fn main() {
             }
             else if module_name == "d03p1" {
                 d03p1::begin(args);
+            }
+            else if module_name == "d03p2" {
+                d03p2::begin(args);
             }
             else {
                 println!("boo");
