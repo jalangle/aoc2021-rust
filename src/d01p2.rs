@@ -1,10 +1,8 @@
-use std::env;
 use std::fs::File;
 use std::io::Read;
 use std::path::Path;
 
-pub fn begin() {
-    let args: Vec<String> = env::args().collect();
+pub fn begin(args: Vec<String>) {
     
     let path = Path::new(&args[1]);
     

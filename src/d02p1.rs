@@ -9,7 +9,6 @@ H*D: 1660158
 #![allow(unused_mut)]
 #![allow(unused_variables)]
 
-use std::env;
 use std::fs::File;
 use std::io::Read;
 use std::path::Path;
@@ -51,8 +50,7 @@ fn file_to_lines(path: &Path) -> Vec<String> {
     lines
 }
 
-pub fn begin() {
-    let args: Vec<String> = env::args().collect();
+pub fn begin(args: Vec<String>) {
     
     let path = Path::new(&args[1]);
     let lines = file_to_lines(path);
