@@ -4,6 +4,7 @@ mod d02p1;
 mod d02p2;
 mod d03p1;
 mod d03p2;
+mod template;
 
 fn main() {
     let module = std::env::args().nth(1);
@@ -29,7 +30,7 @@ fn main() {
                 d03p2::begin(args);
             }
             else {
-                println!("boo");
+                template::begin();
             }
         },
         None => {
