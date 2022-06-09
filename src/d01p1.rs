@@ -1,25 +1,16 @@
-use std::fs::File;
-use std::io::Read;
 use std::path::Path;
+
+#[path = "util.rs"]
+mod util;
 
 pub fn begin(args: Vec<String>) {
     let path = Path::new(&args[1]);
 
-    let mut file = match File::open(&path) {
-        Err(why) => panic!("couldn't open {}: {}", path.display(), why),
-        Ok(file) => file,
-    };
-
-    let mut s = String::new();
-    match file.read_to_string(&mut s) {
-        Err(why) => panic!("couldn't read {}: {}", path.display(), why),
-        Ok(_) => {}
-    }
+    let lines  = util::file_to_lines(path);
 
     let mut prev : i32 = -1;
     let mut increase : i32 = 0;
 
-    let lines = s.lines();
     for l in lines {
         let i: i32 = l.parse().unwrap();
         if i > prev {
