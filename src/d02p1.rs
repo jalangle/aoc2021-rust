@@ -6,8 +6,6 @@ H*D: 1660158
 */
 
 #![allow(dead_code)]
-#![allow(unused_mut)]
-#![allow(unused_variables)]
 
 use std::path::Path;
 

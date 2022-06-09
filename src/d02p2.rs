@@ -6,8 +6,6 @@ H*D: 1604592846
 */
 
 #![allow(dead_code)]
-#![allow(unused_mut)]
-#![allow(unused_variables)]
 
 use std::path::Path;
 #[path = "util.rs"]
