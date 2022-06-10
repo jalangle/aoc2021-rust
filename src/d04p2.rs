@@ -114,7 +114,7 @@ impl Card {
     }
 }
 
-pub fn begin(args: Vec<String>) {
+pub fn begin(args: Vec<String>) -> u32 {
     let lines  = util::file_to_lines(&args[1]);
 
     // line 0 is the draw order
@@ -156,6 +156,23 @@ pub fn begin(args: Vec<String>) {
     }
 
     let lb = last_bingo.unwrap();
-    println!("Value: {}", lb.value());
-    println!("Score: {}", lb.value() * last_draw.unwrap());
+    let score = lb.value() * last_draw.unwrap();
+
+    println!("Score: {}", score);
+    score
+}
+
+mod tests {
+    use super::*;
+    #[test]
+    fn test_testdata() {
+        let args : Vec<String> = vec!["modulename".to_string(), util::get_testdata_root() + "/d4/test"];
+        assert_eq!(begin(args), 1924);
+    }
+
+    #[test]
+    fn test_input() {
+        let args : Vec<String> = vec!["modulename".to_string(), util::get_testdata_root() + "/d4/input"];
+        assert_eq!(begin(args), 18063);
+    }
 }
