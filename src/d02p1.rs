@@ -30,7 +30,7 @@ impl Instruction {
     }
 }
 
-pub fn begin(args: Vec<String>) {
+pub fn begin(args: Vec<String>) -> i32 {
     let lines = util::file_to_lines(&args[1]);
 
     let instructions : Vec<Instruction> = lines.iter().map(|x| Instruction::new(x.to_string()) ).collect();
@@ -50,4 +50,22 @@ pub fn begin(args: Vec<String>) {
         }
     }
     println!("T: {}", horiz * depth);
+    return horiz * depth
+}
+
+mod tests {
+    #[allow(unused_imports)]
+    use super::*;
+
+    #[test]
+    fn test_testdata() {
+        let args : Vec<String> = vec!["modulename".to_string(), util::get_testdata_root() + "/d2/test"];
+        assert_eq!(begin(args), 150);
+    }
+
+    #[test]
+    fn test_input() {
+        let args : Vec<String> = vec!["modulename".to_string(), util::get_testdata_root() + "/d2/input"];
+        assert_eq!(begin(args), 1660158);
+    }
 }
