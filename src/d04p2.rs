@@ -163,6 +163,7 @@ pub fn begin(args: Vec<String>) -> u32 {
 }
 
 mod tests {
+    #[allow(unused_imports)]
     use super::*;
     #[test]
     fn test_testdata() {
