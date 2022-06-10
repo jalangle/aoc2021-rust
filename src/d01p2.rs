@@ -1,7 +1,7 @@
 #[path = "util.rs"]
 mod util;
 
-pub fn begin(args: Vec<String>) {
+pub fn begin(args: Vec<String>) -> i32 {
     let lines  = util::file_to_lines(&args[1]);
 
     let mut prev : i32 = -1;
@@ -18,6 +18,23 @@ pub fn begin(args: Vec<String>) {
         prev = sum
     }
 
-    println!("{}", increase)
+    println!("{}", increase);
+    return increase
+}
 
+mod tests {
+    #[allow(unused_imports)]
+    use super::*;
+
+    #[test]
+    fn test_testdata() {
+        let args : Vec<String> = vec!["modulename".to_string(), util::get_testdata_root() + "/d1/test"];
+        assert_eq!(begin(args), 5);
+    }
+
+    #[test]
+    fn test_input() {
+        let args : Vec<String> = vec!["modulename".to_string(), util::get_testdata_root() + "/d1/input"];
+        assert_eq!(begin(args), 1702);
+    }
 }
