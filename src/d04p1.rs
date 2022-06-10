@@ -112,7 +112,7 @@ impl Card {
     }
 }
 
-pub fn begin(args: Vec<String>) {
+pub fn begin(args: Vec<String>) -> u32 {
     let lines  = util::file_to_lines(&args[1]);
 
     // line 0 is the draw order
@@ -137,18 +137,30 @@ pub fn begin(args: Vec<String>) {
         bingo_cards.insert(bingo_cards.len(), card);
     }
 
-    let mut done = false;
     for n in draw_order {
-        if done {
-            break;
-        }
         for c in &mut bingo_cards {
             if c.mark(n) {
-                let board_value = c.value();
-                println!("Score: {}", board_value * n);
-                done = true;
-                break;
+                let score = c.value() * n;
+                println!("Score: {}", score);
+                return score
             }
         }
+    }
+    return 0
+}
+
+mod tests {
+    #[allow(unused_imports)]
+    use super::*;
+    #[test]
+    fn test_testdata() {
+        let args : Vec<String> = vec!["modulename".to_string(), util::get_testdata_root() + "/d4/test"];
+        assert_eq!(begin(args), 4512);
+    }
+
+    #[test]
+    fn test_input() {
+        let args : Vec<String> = vec!["modulename".to_string(), util::get_testdata_root() + "/d4/input"];
+        assert_eq!(begin(args), 12796);
     }
 }
