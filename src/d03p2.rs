@@ -62,7 +62,7 @@ fn get_co2rating(values: Vec<Vec<u32>>) -> u32 {
 }
 
 
-pub fn begin(args: Vec<String>) {
+pub fn begin(args: Vec<String>) -> u32{
     
     let lines  = util::file_to_lines(&args[1]);
 
@@ -77,4 +77,22 @@ pub fn begin(args: Vec<String>) {
     println!("CO2: {}", co2rating);
 
     println!("Life Support Rating: {}", o2rating * co2rating);
+    return o2rating * co2rating
+}
+
+mod tests {
+    #[allow(unused_imports)]
+    use super::*;
+
+    #[test]
+    fn test_testdata() {
+        let args : Vec<String> = vec!["modulename".to_string(), util::get_testdata_root() + "/d3/test"];
+        assert_eq!(begin(args), 230);
+    }
+
+    #[test]
+    fn test_input() {
+        let args : Vec<String> = vec!["modulename".to_string(), util::get_testdata_root() + "/d3/input"];
+        assert_eq!(begin(args), 2775870);
+    }
 }

@@ -34,7 +34,7 @@ fn get_epsilon(count_of_lines: usize, count_of_ones: &Vec<u32>) -> u32
     epsilon
 }
 
-pub fn begin(args: Vec<String>) {
+pub fn begin(args: Vec<String>) -> u32 {
     let lines  = util::file_to_lines(&args[1]);
 
     let initial : Vec<u32> = vec![0; lines[0].len()];
@@ -49,4 +49,22 @@ pub fn begin(args: Vec<String>) {
     println!("G: {}", epsilon);
 
     println!("Power Consumption: {}", gamma * epsilon);
+    return gamma * epsilon
+}
+
+mod tests {
+    #[allow(unused_imports)]
+    use super::*;
+
+    #[test]
+    fn test_testdata() {
+        let args : Vec<String> = vec!["modulename".to_string(), util::get_testdata_root() + "/d3/test"];
+        assert_eq!(begin(args), 198);
+    }
+
+    #[test]
+    fn test_input() {
+        let args : Vec<String> = vec!["modulename".to_string(), util::get_testdata_root() + "/d3/input"];
+        assert_eq!(begin(args), 2724524);
+    }
 }
