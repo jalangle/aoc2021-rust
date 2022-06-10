@@ -31,5 +31,5 @@ pub fn get_testdata_root() -> String {
         println!("Env var not found");
     }
 
-    path_env.unwrap()
+    path_env.unwrap() + "/testdata"
 }
