@@ -6,6 +6,7 @@ mod d03p1;
 mod d03p2;
 mod d04p1;
 mod d04p2;
+mod d05p1;
 mod template;
 
 fn main() {
@@ -36,6 +37,9 @@ fn main() {
             }
             else if module_name == "d04p2" {
                 d04p2::begin(args);
+            }
+            else if module_name == "d05p1" {
+                d05p1::begin(args);
             }
             else {
                 template::begin();
