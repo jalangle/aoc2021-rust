@@ -18,10 +18,16 @@ impl Generation {
             interval: interval,
         }
     }
+
+    pub fn format(&self) -> String {
+        let v = format!("{}", self.interval);
+        let elements : Vec<String> = vec![v;self.count as usize];
+        elements.join(",")
+    }
 }
 
 fn printfish(fish: &Vec<Generation>) {
-    let values = fish.iter().map(|x| format!("{}", x.interval)).collect::<Vec<String>>().join(",");
+    let values = fish.iter().map(|x| x.format()).collect::<Vec<String>>().join(",");
     println!("{}", values)
 }
 
@@ -33,8 +39,7 @@ pub fn begin(args: Vec<String>) -> i64 {
     let mut lantern_fish : Vec<Generation> = lines[0].split(",").map(|x| { x.parse().unwrap()}).map(|x| { Generation::new(1,x)} ).collect::<Vec<Generation>>();
 
     for _d in 0..days {
-        //printfish(&lantern_fish);
-
+//        printfish(&lantern_fish);
         let mut number_to_add : i64 = 0;
 
         for i in 0..lantern_fish.len() {
